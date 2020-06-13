@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import React from 'react';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import CardList from './components/CardList';
+import Form from './components/Form';
+
+class App extends Component {
+  state = {
+    users: [
+      {
+        id: 1,
+        name: 'John Doe',
+        email: 'john@email.com',
+      },
+      {
+        id: 2,
+        name: 'Sarah Smith',
+        email: 'john@email.com',
+      },
+      {
+        id: 3,
+        name: 'Mike Jones',
+        email: 'john@email.com',
+      },
+      {
+        id: 4,
+        name: 'John Doe',
+        email: 'john@email.com',
+      },
+    ],
+  };
+
+  render() {
+    const handleChange = e => {
+      this.setState({
+        [e.target.id]: e.target.value,
+      });
+    };
+
+    const { users } = this.state;
+    return (
+      <div>
+        <CardList person={users} />
+        <Form handleChange={handleChange} />
+      </div>
+    );
+  }
 }
 
 export default App;

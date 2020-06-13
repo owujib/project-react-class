@@ -31,18 +31,43 @@ class App extends Component {
     ],
   };
 
-  render() {
-    const handleChange = e => {
-      this.setState({
-        [e.target.id]: e.target.value,
-      });
-    };
+  handleSumbit = e => {
+    e.preventDefault();
+  };
 
+  handleChange = e => {
+    let newId = this.state.users.length + 1;
+    this.setState({
+      id: newId,
+      [e.target.id]: e.target.value,
+      ...this.state.users,
+    });
+  };
+
+  render() {
     const { users } = this.state;
     return (
       <div>
         <CardList person={users} />
-        <Form handleChange={handleChange} />
+        <form onSubmit={this.handleSumbit}>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="input your name"
+            onChange={this.handleChange}
+          />
+          <br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="input your email"
+            onChange={this.handleChange}
+          />
+          <br />
+          <button>Sumbit</button>
+        </form>
       </div>
     );
   }

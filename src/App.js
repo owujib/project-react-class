@@ -1,73 +1,40 @@
-// import React from 'react';
-import React, { Component } from 'react';
+import React from 'react';
+import CardList from './components/CardList';
 
 import './App.css';
-import CardList from './components/CardList';
 import Form from './components/Form';
 
-class App extends Component {
-  state = {
-    users: [
-      {
-        id: 1,
-        name: 'John Doe',
-        email: 'john@email.com',
-      },
-      {
-        id: 2,
-        name: 'Sarah Smith',
-        email: 'john@email.com',
-      },
-      {
-        id: 3,
-        name: 'Mike Jones',
-        email: 'john@email.com',
-      },
-      {
-        id: 4,
-        name: 'John Doe',
-        email: 'john@email.com',
-      },
-    ],
-  };
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      contacts: [
+        { id: 1, name: 'John Doe', email: 'john@email.com' },
+        { id: 2, name: 'Mike Johes', email: 'mike@email.com' },
+        { id: 3, name: 'Sarah', email: 'sarah@email.com' },
+      ],
+    };
+  }
 
-  handleSumbit = e => {
-    e.preventDefault();
-  };
-
-  handleChange = e => {
-    let newId = this.state.users.length + 1;
-    this.setState({
-      id: newId,
-      [e.target.id]: e.target.value,
-      ...this.state.users,
-    });
+  addContacts = contacts => {
+    contacts.id = this.state.contacts.length + 1;
+    let newContact = [...this.state.contacts, contacts];
+    this.setState({ contacts: newContact }, console.log(this.state));
   };
 
   render() {
-    const { users } = this.state;
     return (
       <div>
-        <CardList person={users} />
-        <form onSubmit={this.handleSumbit}>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="input your name"
-            onChange={this.handleChange}
-          />
-          <br />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="input your email"
-            onChange={this.handleChange}
-          />
-          <br />
-          <button>Sumbit</button>
-        </form>
+        <h1>
+          Hello world welcome to REACT
+          <span role="img" aria-label="emoji">
+            {' '}
+            👌👌👌
+          </span>{' '}
+        </h1>
+
+        <CardList contacts={this.state.contacts} />
+        <Form addContact={this.addContacts} />
       </div>
     );
   }

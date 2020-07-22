@@ -15,12 +15,11 @@ class App extends React.Component {
 
   addStudent = data => {
     let newId = this.state.students.length + 1;
+    let newStudent = { id: newId, data };
     this.setState(
       {
         ...this.state.students,
-        id: newId,
-        name: data.name,
-        email: data.email,
+        {new}
       },
       console.log(this.state)
     );

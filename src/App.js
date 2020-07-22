@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Student from './Student';
+import StudentForm from './StudentForm';
+
+class App extends React.Component {
+  state = {
+    students: [
+      { id: 1, name: 'John', email: 'john@email.com' },
+      { id: 2, name: 'Mike', email: 'mike@email.com' },
+      { id: 3, name: 'Sarah', email: 'sarah@email.com' },
+    ],
+  };
+
+  addStudent = data => {
+    let newId = this.state.students.length + 1;
+    this.setState(
+      {
+        ...this.state.students,
+        id: newId,
+        name: data.name,
+        email: data.email,
+      },
+      console.log(this.state)
+    );
+  };
+
+  render() {
+    const { students } = this.state;
+    return (
+      <div>
+        <Student students={students} />
+        <StudentForm addStudent={this.addStudent} />
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -16,29 +16,21 @@ export class StudentForm extends React.Component {
       <div className="student-form">
         <h1>Add Student</h1>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Name:</label>
+          <label>Name: </label>
           <input
-            onChange={e => {
-              this.setState({
-                name: e.target.value,
-              });
-            }}
+            onChange={e => this.setState({ name: e.target.value })}
+            type="text"
             id="name"
             value={this.state.name}
-            type="text"
-            placeholder="enter your name"
           />
           <br />
           <br />
-          <label htmlFor="name">email:</label>
+          <label>email: </label>
           <input
-            id="email"
-            value={this.state.email}
-            onChange={e => {
-              this.setState({ email: e.target.value });
-            }}
+            onChange={e => this.setState({ email: e.target.value })}
             type="text"
-            placeholder="enter your email"
+            id="name"
+            value={this.state.email}
           />
           <br />
           <br />

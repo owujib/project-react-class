@@ -29,7 +29,7 @@ export class StudentForm extends React.Component {
           <input
             onChange={e => this.setState({ email: e.target.value })}
             type="text"
-            id="name"
+            id="email"
             value={this.state.email}
           />
           <br />

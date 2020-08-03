@@ -1,18 +1,14 @@
 import React from 'react';
+import CardList from './CardList';
 
 class Student extends React.Component {
   render() {
-    console.log(this.props);
     const { students } = this.props;
 
     let studentList = students.map(student => {
-      return (
-        <div style={cardStyle} key={student.id}>
-          <p>name: {student.name}</p>
-          <p>email: {student.email}</p>
-        </div>
-      );
+      return <CardList key={student.id} {...student} />;
     });
+
     return (
       <div className="App">
         <h1 className="student-header">Student</h1>
@@ -22,13 +18,9 @@ class Student extends React.Component {
   }
 }
 
-const cardStyle = {
-  color: 'red',
-  margin: '10px',
-  border: '0px solid #ccc',
-  boxShadow: '0px 0px 10px #000',
-  padding: '10px',
-  borderRadius: '10px',
-};
+export function Example(props) {
+  console.log(props);
+  return <h1>Students example</h1>;
+}
 
 export default Student;
